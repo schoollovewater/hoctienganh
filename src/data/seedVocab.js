@@ -1,0 +1,155 @@
+// Bộ từ vựng có sẵn (AI soạn, định nghĩa viết lại). Có thể sửa/xoá trong app.
+// Format: [front, ipa, meaning, example, topic, ref?]
+
+export const VOCAB_TOPICS = {
+  comm: 'Giao tiếp',
+  office: 'Công sở',
+  testing: 'Testing chung',
+  bus: 'CAN / LIN / ETH',
+  diag: 'UDS / Chẩn đoán',
+  xil: 'HIL / XiL',
+  canoe: 'CANoe / CAPL',
+  ecutest: 'ECU-TEST',
+  python: 'Python / Robot',
+  safety: 'ISO 26262 / ASPICE',
+  work: 'Từ công việc của tôi',
+};
+
+const raw = [
+  // ---------- Giao tiếp ----------
+  ['catch up', '/kætʃ ʌp/', 'gặp lại, hỏi thăm tình hình', "Let's catch up over coffee this week.", 'comm'],
+  ['by the way', '/baɪ ðə weɪ/', 'nhân tiện', 'By the way, how was your weekend?', 'comm'],
+  ['make sense', '/meɪk sens/', 'hợp lý, hiểu được', 'Does that make sense to you?', 'comm'],
+  ['figure out', '/ˈfɪɡ.jər aʊt/', 'tìm ra, hiểu ra', "I'm still trying to figure out the root cause.", 'comm'],
+  ['come up with', '/kʌm ʌp wɪð/', 'nghĩ ra (ý tưởng, giải pháp)', 'Can you come up with a better solution?', 'comm'],
+  ['get used to', '/ɡet juːst tə/', 'quen với', "I'm getting used to the new tools.", 'comm'],
+  ['look forward to', '/lʊk ˈfɔː.wəd tə/', 'mong chờ', 'I look forward to working with you.', 'comm'],
+  ['I see what you mean', '/aɪ siː wɒt juː miːn/', 'tôi hiểu ý bạn', 'I see what you mean, but I have a different idea.', 'comm'],
+  ['to be honest', '/tə bi ˈɒn.ɪst/', 'thành thật mà nói', "To be honest, I'm not sure about the deadline.", 'comm'],
+  ['no worries', '/nəʊ ˈwʌr.iz/', 'không sao đâu', 'No worries, I can do it tomorrow.', 'comm'],
+  ['sounds good', '/saʊndz ɡʊd/', 'nghe ổn đấy', 'Friday at 10? Sounds good.', 'comm'],
+  ['keep in touch', '/kiːp ɪn tʌtʃ/', 'giữ liên lạc', "Let's keep in touch after the project.", 'comm'],
+  ['on the same page', '/ɒn ðə seɪm peɪdʒ/', 'cùng chung hiểu biết', 'I want to make sure we are on the same page.', 'comm'],
+  ['in a nutshell', '/ɪn ə ˈnʌt.ʃel/', 'tóm lại', 'In a nutshell, the test passed except for two cases.', 'comm'],
+  ['up to you', '/ʌp tə juː/', 'tuỳ bạn', "It's up to you which approach we take.", 'comm'],
+  ['get back to (someone)', '/ɡet bæk tə/', 'phản hồi lại sau', "I'll get back to you by the end of the day.", 'comm'],
+  ['run into', '/rʌn ˈɪn.tuː/', 'gặp phải (vấn đề)', 'We ran into a problem with the test bench.', 'comm'],
+  ['hang on', '/hæŋ ɒn/', 'chờ một chút', 'Hang on, let me check the log.', 'comm'],
+  ['go ahead', '/ɡəʊ əˈhed/', 'cứ làm đi, mời bạn', 'Go ahead and start the meeting.', 'comm'],
+  ['off the top of my head', '/ɒf ðə tɒp əv maɪ hed/', 'nói ngay không cần tra', "Off the top of my head, it's around 200 test cases.", 'comm'],
+  ['bear with me', '/beər wɪð miː/', 'xin chờ/kiên nhẫn với tôi', 'Bear with me, my screen is loading.', 'comm'],
+  ['fair enough', '/feər ɪˈnʌf/', 'cũng hợp lý', 'Fair enough, we can postpone it.', 'comm'],
+  ['speak up', '/spiːk ʌp/', 'nói to hơn; lên tiếng', 'Could you speak up a bit? I can barely hear you.', 'comm'],
+  ['work out', '/wɜːk aʊt/', 'giải quyết được; thành công', "Don't worry, it'll work out.", 'comm'],
+  ['point out', '/pɔɪnt aʊt/', 'chỉ ra', 'Thanks for pointing out that mistake.', 'comm'],
+
+  // ---------- Công sở ----------
+  ['follow up', '/ˈfɒl.əʊ ʌp/', 'theo dõi tiếp, nhắc lại', "I'll follow up with the supplier tomorrow.", 'office'],
+  ['clarify', '/ˈklær.ɪ.faɪ/', 'làm rõ', 'Could you clarify the expected result?', 'office'],
+  ['heads-up', '/ˈhedz.ʌp/', 'báo trước, cảnh báo sớm', 'Just a heads-up: the build will be late today.', 'office'],
+  ['on track', '/ɒn træk/', 'đúng tiến độ', 'We are on track for the release.', 'office'],
+  ['behind schedule', '/bɪˈhaɪnd ˈʃedʒ.uːl/', 'chậm tiến độ', 'The integration test is behind schedule.', 'office'],
+  ['deadline', '/ˈded.laɪn/', 'hạn chót', 'The deadline for the test report is Friday.', 'office'],
+  ['workaround', '/ˈwɜːk.ə.raʊnd/', 'cách xử lý tạm thời', 'We have a workaround until the fix is ready.', 'office'],
+  ['bottleneck', '/ˈbɒt.əl.nek/', 'điểm nghẽn', 'The HIL bench is our main bottleneck.', 'office'],
+  ['blocker', '/ˈblɒk.ər/', 'vấn đề chặn tiến độ', 'Do you have any blockers today?', 'office'],
+  ['escalate', '/ˈes.kə.leɪt/', 'báo lên cấp trên', 'If it is not fixed by Monday, we should escalate it.', 'office'],
+  ['prioritize', '/praɪˈɒr.ɪ.taɪz/', 'ưu tiên', 'Please prioritize the safety-related bugs.', 'office'],
+  ['estimate', '/ˈes.tɪ.meɪt/', 'ước lượng', 'Can you estimate how long it will take?', 'office'],
+  ['stakeholder', '/ˈsteɪkˌhəʊl.dər/', 'bên liên quan', 'We need approval from all stakeholders.', 'office'],
+  ['agenda', '/əˈdʒen.də/', 'chương trình họp', "Let's go through the agenda first.", 'office'],
+  ['action item', '/ˈæk.ʃən ˈaɪ.təm/', 'việc cần làm sau họp', 'I will send the action items after the meeting.', 'office'],
+  ['in charge of', '/ɪn tʃɑːdʒ əv/', 'phụ trách', "Who's in charge of the regression tests?", 'office'],
+  ['sync up', '/sɪŋk ʌp/', 'trao đổi để thống nhất', "Let's sync up after lunch.", 'office'],
+  ['wrap up', '/ræp ʌp/', 'kết thúc, tổng kết', "Let's wrap up the meeting.", 'office'],
+  ['take ownership', '/teɪk ˈəʊ.nə.ʃɪp/', 'nhận trách nhiệm', 'I will take ownership of this issue.', 'office'],
+  ['hand over', '/hænd ˈəʊ.vər/', 'bàn giao', 'I will hand over my tasks before my vacation.', 'office'],
+  ['loop in', '/luːp ɪn/', 'thêm ai đó vào trao đổi', "I'll loop in the developer on this email.", 'office'],
+  ['feasible', '/ˈfiː.zə.bəl/', 'khả thi', 'Is it feasible to finish by next week?', 'office'],
+  ['resource', '/rɪˈzɔːs/', 'nguồn lực (người, máy)', 'We need more resources for testing.', 'office'],
+  ['sign-off', '/ˈsaɪn.ɒf/', 'phê duyệt chính thức', 'We are waiting for the customer sign-off.', 'office'],
+  ['root cause', '/ruːt kɔːz/', 'nguyên nhân gốc', 'We still need to find the root cause.', 'office'],
+
+  // ---------- Testing chung ----------
+  ['test case', '/test keɪs/', 'ca kiểm thử', 'I wrote ten new test cases for this feature.', 'testing', 'ISTQB Glossary'],
+  ['test specification', '/test ˌspes.ɪ.fɪˈkeɪ.ʃən/', 'đặc tả kiểm thử', 'The test specification is reviewed by the customer.', 'testing', 'ISTQB Glossary'],
+  ['expected result', '/ɪkˈspek.tɪd rɪˈzʌlt/', 'kết quả mong đợi', 'The actual result does not match the expected result.', 'testing', 'ISTQB Glossary'],
+  ['regression test', '/rɪˈɡreʃ.ən test/', 'kiểm thử hồi quy', 'We run the regression tests every night.', 'testing', 'ISTQB Glossary'],
+  ['test coverage', '/test ˈkʌv.ər.ɪdʒ/', 'độ bao phủ kiểm thử', 'Requirement coverage is now 92%.', 'testing', 'ISTQB Glossary'],
+  ['traceability', '/ˌtreɪ.səˈbɪl.ə.ti/', 'khả năng truy vết (requirement ↔ test)', 'Every test case must have traceability to a requirement.', 'testing', 'ASPICE'],
+  ['defect', '/ˈdiː.fekt/', 'lỗi (trong sản phẩm)', 'I logged a defect in Jira.', 'testing', 'ISTQB Glossary'],
+  ['reproduce', '/ˌriː.prəˈdʒuːs/', 'tái hiện (lỗi)', "I can't reproduce the issue on my bench.", 'testing'],
+  ['intermittent', '/ˌɪn.təˈmɪt.ənt/', 'lúc có lúc không (lỗi chập chờn)', 'It is an intermittent failure, about 1 in 20 runs.', 'testing'],
+  ['pass / fail criteria', '/pɑːs feɪl kraɪˈtɪə.ri.ə/', 'tiêu chí đạt / không đạt', 'The pass criteria are defined in the requirement.', 'testing', 'ISTQB Glossary'],
+  ['test report', '/test rɪˈpɔːt/', 'báo cáo kiểm thử', 'The test report is attached to the release.', 'testing'],
+  ['boundary value', '/ˈbaʊn.dər.i ˈvæl.juː/', 'giá trị biên', 'We should test the boundary values of the voltage.', 'testing', 'ISTQB Glossary'],
+  ['precondition', '/ˌpriː.kənˈdɪʃ.ən/', 'điều kiện tiên quyết', 'Precondition: ignition is on.', 'testing', 'ISTQB Glossary'],
+  ['flaky test', '/ˈfleɪ.ki test/', 'test lúc pass lúc fail không ổn định', 'This flaky test fails randomly, we need to fix it.', 'testing'],
+  ['test bench', '/test bentʃ/', 'bàn/hệ thống thử nghiệm', 'The test bench is booked until 3 p.m.', 'testing'],
+
+  // ---------- CAN / LIN / Ethernet ----------
+  ['CAN bus', '/kæn bʌs/', 'bus CAN (mạng truyền thông trên xe)', 'The ECU communicates with others over the CAN bus.', 'bus'],
+  ['frame', '/freɪm/', 'khung dữ liệu', 'The frame 0x1A0 is sent every 10 ms.', 'bus'],
+  ['signal', '/ˈsɪɡ.nəl/', 'tín hiệu (trong frame)', 'The vehicle speed signal is in this frame.', 'bus'],
+  ['cycle time', '/ˈsaɪ.kəl taɪm/', 'chu kỳ gửi', 'The cycle time should be 20 ms, but we measured 25 ms.', 'bus'],
+  ['bus load', '/bʌs ləʊd/', 'tải bus', 'The bus load is too high, around 80%.', 'bus'],
+  ['timeout', '/ˈtaɪm.aʊt/', 'quá thời gian chờ', 'The ECU sets a DTC after a message timeout.', 'bus'],
+  ['rest-bus simulation', '/rest bʌs ˌsɪm.jəˈleɪ.ʃən/', 'mô phỏng các ECU còn lại trên bus', 'We use rest-bus simulation because the other ECUs are not available.', 'bus', 'Vector'],
+  ['DBC file', '/ˌdiː.biːˈsiː faɪl/', 'file mô tả cơ sở dữ liệu CAN', 'Please update the DBC file to the latest version.', 'bus', 'Vector'],
+  ['wake-up / sleep mode', '/ˈweɪk.ʌp sliːp məʊd/', 'chế độ đánh thức / ngủ', 'The ECU does not enter sleep mode after 30 seconds.', 'bus'],
+  ['checksum', '/ˈtʃek.sʌm/', 'mã kiểm tra tổng', 'The message is rejected because the checksum is wrong.', 'bus'],
+  ['alive counter', '/əˈlaɪv ˈkaʊn.tər/', 'bộ đếm sống (kiểm tra message mới)', 'The alive counter is not incrementing.', 'bus'],
+
+  // ---------- UDS / Chẩn đoán ----------
+  ['DTC (Diagnostic Trouble Code)', '/ˌdiː.tiːˈsiː/', 'mã lỗi chẩn đoán', 'The ECU stored a DTC for undervoltage.', 'diag', 'ISO 14229'],
+  ['diagnostic session', '/ˌdaɪ.əɡˈnɒs.tɪk ˈseʃ.ən/', 'phiên chẩn đoán', 'Switch to the extended diagnostic session first.', 'diag', 'ISO 14229'],
+  ['security access', '/sɪˈkjʊə.rə.ti ˈæk.ses/', 'mở khoá bảo mật (seed/key)', 'Security access failed because the key was invalid.', 'diag', 'ISO 14229'],
+  ['negative response', '/ˈneɡ.ə.tɪv rɪˈspɒns/', 'phản hồi từ chối (NRC)', 'The ECU sent a negative response with code 0x22.', 'diag', 'ISO 14229'],
+  ['read / clear DTCs', '/riːd klɪər ˌdiː.tiːˈsiːz/', 'đọc / xoá mã lỗi', 'Clear the DTCs before starting the test.', 'diag', 'ISO 14229'],
+  ['flash the ECU', '/flæʃ ði ˌiː.siːˈjuː/', 'nạp phần mềm cho ECU', 'We need to flash the ECU with the latest build.', 'diag'],
+  ['DID (Data Identifier)', '/ˌdiː.aɪˈdiː/', 'mã định danh dữ liệu', 'Read DID 0xF190 to get the VIN.', 'diag', 'ISO 14229'],
+  ['freeze frame', '/friːz freɪm/', 'dữ liệu chụp lại khi lỗi xảy ra', 'Check the freeze frame data for the battery voltage.', 'diag'],
+
+  // ---------- HIL / XiL ----------
+  ['HIL (Hardware-in-the-Loop)', '/hɪl/', 'kiểm thử với phần cứng ECU thật trong vòng lặp mô phỏng', 'We run the system tests on the HIL.', 'xil', 'ISTQB CT-AuT'],
+  ['SIL (Software-in-the-Loop)', '/sɪl/', 'kiểm thử phần mềm trên PC, không cần phần cứng', 'SIL tests give us faster feedback.', 'xil', 'ISTQB CT-AuT'],
+  ['MIL (Model-in-the-Loop)', '/mɪl/', 'kiểm thử ở mức mô hình', 'The algorithm was validated in MIL first.', 'xil', 'ISTQB CT-AuT'],
+  ['plant model', '/plɑːnt ˈmɒd.əl/', 'mô hình đối tượng (xe, động cơ...)', 'The plant model simulates the motor behavior.', 'xil'],
+  ['fault injection', '/fɔːlt ɪnˈdʒek.ʃən/', 'chèn lỗi (đứt dây, chập mạch...)', 'We use fault injection to simulate a short circuit.', 'xil'],
+  ['real-time', '/ˈrɪəl.taɪm/', 'thời gian thực', 'The model runs on a real-time processor.', 'xil'],
+  ['dSPACE ControlDesk', '/ˈdiː.speɪs kənˈtrəʊl.desk/', 'phần mềm điều khiển/giám sát HIL của dSPACE', 'Open ControlDesk and load the experiment.', 'xil', 'dSPACE'],
+
+  // ---------- CANoe / CAPL ----------
+  ['CANoe configuration', '/kəˈnuː kənˌfɪɡ.əˈreɪ.ʃən/', 'file cấu hình CANoe', 'Load the CANoe configuration for the body ECU.', 'canoe', 'Vector'],
+  ['CAPL script', '/ˈkæp.əl skrɪpt/', 'script viết bằng ngôn ngữ CAPL', 'I wrote a CAPL script to send the wake-up frame.', 'canoe', 'Vector'],
+  ['trace window', '/treɪs ˈwɪn.dəʊ/', 'cửa sổ xem message trên bus', 'You can see the error frame in the trace window.', 'canoe', 'Vector'],
+  ['measurement', '/ˈmeʒ.ə.mənt/', 'phiên đo (chạy CANoe)', 'Start the measurement before powering the ECU.', 'canoe', 'Vector'],
+  ['test module', '/test ˈmɒd.juːl/', 'module test trong CANoe', 'The test module generates an HTML report.', 'canoe', 'Vector'],
+  ['event handler', '/ɪˈvent ˈhænd.lər/', 'hàm xử lý sự kiện (on message, on timer...)', 'Add an event handler for this message.', 'canoe'],
+
+  // ---------- ECU-TEST ----------
+  ['test package', '/test ˈpæk.ɪdʒ/', 'gói test trong ECU-TEST', 'I created a new test package for the lighting function.', 'ecutest', 'tracetronic'],
+  ['test configuration', '/test kənˌfɪɡ.əˈreɪ.ʃən/', 'cấu hình test (ECU-TEST)', 'Select the HIL test configuration before running.', 'ecutest', 'tracetronic'],
+  ['parameterize', '/pəˈræm.ɪ.tər.aɪz/', 'tham số hoá', 'We parameterize the test to run with different voltages.', 'ecutest'],
+  ['test step', '/test step/', 'bước kiểm thử', 'The third test step failed.', 'ecutest'],
+
+  // ---------- Python / Robot ----------
+  ['keyword', '/ˈkiː.wɜːd/', 'từ khoá (hàm) trong Robot Framework', 'I created a custom keyword to read the DTCs.', 'python', 'Robot Framework'],
+  ['test suite', '/test swiːt/', 'bộ test', 'The nightly test suite takes about 3 hours.', 'python'],
+  ['setup / teardown', '/ˈset.ʌp ˈteə.daʊn/', 'bước chuẩn bị / dọn dẹp', 'The teardown resets the power supply.', 'python'],
+  ['assertion', '/əˈsɜː.ʃən/', 'câu lệnh kiểm tra kết quả', 'The assertion failed: expected 12 V but got 11.4 V.', 'python'],
+  ['pipeline', '/ˈpaɪp.laɪn/', 'chuỗi CI tự động', 'The pipeline triggers the tests after every merge.', 'python'],
+  ['refactor', '/ˌriːˈfæk.tər/', 'tái cấu trúc code', 'We should refactor these scripts to reduce duplication.', 'python'],
+
+  // ---------- ISO 26262 / ASPICE ----------
+  ['functional safety', '/ˈfʌŋk.ʃən.əl ˈseɪf.ti/', 'an toàn chức năng', 'This requirement is related to functional safety.', 'safety', 'ISO 26262'],
+  ['ASIL', '/ˈæs.ɪl/', 'mức toàn vẹn an toàn ô tô (A–D)', 'The brake function is rated ASIL D.', 'safety', 'ISO 26262'],
+  ['safety goal', '/ˈseɪf.ti ɡəʊl/', 'mục tiêu an toàn', 'Each safety goal must be verified.', 'safety', 'ISO 26262'],
+  ['work product', '/wɜːk ˈprɒd.ʌkt/', 'sản phẩm đầu ra của quy trình', 'The test report is an ASPICE work product.', 'safety', 'ASPICE'],
+  ['verification / validation', '/ˌver.ɪ.fɪˈkeɪ.ʃən ˌvæl.ɪˈdeɪ.ʃən/', 'kiểm chứng (làm đúng) / thẩm định (làm đúng cái cần)', 'Verification checks we built it right; validation checks we built the right thing.', 'safety', 'ISTQB Glossary'],
+  ['audit / assessment', '/ˈɔː.dɪt əˈses.mənt/', 'đánh giá (quy trình)', 'We have an ASPICE assessment next month.', 'safety', 'ASPICE'],
+];
+
+export const seedVocab = raw.map(([front, ipa, meaning, example, topic, ref]) => ({
+  type: 'vocab', front, ipa, meaning, example, topic, ref: ref || '',
+}));

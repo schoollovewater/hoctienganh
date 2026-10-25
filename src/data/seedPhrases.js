@@ -1,0 +1,106 @@
+// Mẫu câu giao tiếp có sẵn. Format: [english, vietnamese]
+
+export const PHRASE_TOPICS = {
+  smalltalk: { label: 'Small talk', icon: '☕' },
+  clarify: { label: 'Hỏi lại / làm rõ', icon: '❓' },
+  standup: { label: 'Daily standup', icon: '🧍' },
+  bug: { label: 'Báo lỗi', icon: '🐞' },
+  result: { label: 'Báo kết quả test', icon: '📊' },
+  meeting: { label: 'Họp & thảo luận', icon: '🗣️' },
+  customer: { label: 'Làm việc với khách hàng', icon: '🤝' },
+  help: { label: 'Xin hỗ trợ', icon: '🙋' },
+  email: { label: 'Email & chat', icon: '✉️' },
+};
+
+const raw = {
+  smalltalk: [
+    ['How was your weekend?', 'Cuối tuần của bạn thế nào?'],
+    ['Did you do anything fun?', 'Bạn có làm gì vui không?'],
+    ["How's it going with the new project?", 'Dự án mới thế nào rồi?'],
+    ["It's been a busy week.", 'Tuần này bận thật.'],
+    ['Have you tried the new coffee place downstairs?', 'Bạn thử quán cà phê mới dưới tầng chưa?'],
+    ["What's the weather like in Germany now?", 'Thời tiết bên Đức giờ thế nào?'],
+    ['Long time no see!', 'Lâu rồi không gặp!'],
+    ['Have a nice weekend!', 'Chúc cuối tuần vui vẻ!'],
+  ],
+  clarify: [
+    ['Sorry, could you say that again?', 'Xin lỗi, bạn nói lại được không?'],
+    ['Could you speak a little more slowly, please?', 'Bạn nói chậm hơn chút được không?'],
+    ['What do you mean by "stable"?', 'Ý bạn "ổn định" là thế nào?'],
+    ['Just to confirm, you want the test to run every night?', 'Xác nhận lại, bạn muốn test chạy mỗi đêm đúng không?'],
+    ['So, if I understand correctly, the timeout should be 500 ms?', 'Nếu tôi hiểu đúng thì timeout phải là 500 ms?'],
+    ['Could you give me an example?', 'Bạn cho tôi một ví dụ được không?'],
+    ['Could you clarify the expected behavior in this case?', 'Bạn làm rõ hành vi mong đợi trong trường hợp này được không?'],
+    ['Sorry, I missed the last part.', 'Xin lỗi, tôi không nghe kịp phần cuối.'],
+  ],
+  standup: [
+    ['Yesterday I finished the CAN signal tests on the HIL bench.', 'Hôm qua tôi đã xong các test tín hiệu CAN trên HIL.'],
+    ["Today I'm going to work on the diagnostic test cases.", 'Hôm nay tôi sẽ làm các test case chẩn đoán.'],
+    ["I'm blocked because the test bench is not available.", 'Tôi bị chặn vì bàn test chưa sẵn sàng.'],
+    ['No blockers on my side.', 'Phía tôi không có vướng mắc gì.'],
+    ["I'm still investigating the intermittent failure.", 'Tôi vẫn đang điều tra lỗi chập chờn.'],
+    ["I'm waiting for the new software build from the developers.", 'Tôi đang đợi bản build mới từ dev.'],
+    ['I should be done by tomorrow afternoon.', 'Tôi chắc sẽ xong vào chiều mai.'],
+    ['I need some help with the CAPL script.', 'Tôi cần hỗ trợ một chút về script CAPL.'],
+  ],
+  bug: [
+    ["The ECU doesn't respond to the diagnostic session request.", 'ECU không phản hồi yêu cầu phiên chẩn đoán.'],
+    ['The issue happens only after a cold start.', 'Lỗi chỉ xảy ra sau khi khởi động nguội.'],
+    ['I can reproduce it every time with these steps.', 'Tôi có thể tái hiện lỗi mỗi lần với các bước này.'],
+    ['It happens about one in ten runs.', 'Lỗi xảy ra khoảng một trên mười lần chạy.'],
+    ['I attached the trace file and the screenshots to the ticket.', 'Tôi đã đính kèm file trace và ảnh chụp vào ticket.'],
+    ['The expected value is 12 volts, but the actual value is 9 volts.', 'Giá trị mong đợi là 12V nhưng thực tế là 9V.'],
+    ['This looks like a regression from the last build.', 'Có vẻ đây là lỗi hồi quy từ bản build trước.'],
+    ['I think this is a high-priority issue because it affects safety.', 'Tôi nghĩ đây là lỗi ưu tiên cao vì ảnh hưởng an toàn.'],
+  ],
+  result: [
+    ['95 percent of the test cases passed.', '95% số test case đã pass.'],
+    ['The remaining failures are related to LIN timing.', 'Các lỗi còn lại liên quan đến timing LIN.'],
+    ['All safety-related tests passed.', 'Tất cả test liên quan an toàn đều pass.'],
+    ['Three test cases were not executed because of a hardware issue.', 'Ba test case chưa chạy do vấn đề phần cứng.'],
+    ['Compared to last week, the pass rate went up by 5 percent.', 'So với tuần trước, tỉ lệ pass tăng 5%.'],
+    ['The full test report is available on Confluence.', 'Báo cáo đầy đủ có trên Confluence.'],
+    ['Requirement coverage is now at 90 percent.', 'Độ bao phủ requirement hiện là 90%.'],
+  ],
+  meeting: [
+    ['Can I add something here?', 'Tôi bổ sung một chút được không?'],
+    ['I agree with you on that point.', 'Tôi đồng ý với bạn ở điểm đó.'],
+    ['I see your point, but I have a concern.', 'Tôi hiểu ý bạn, nhưng tôi có một băn khoăn.'],
+    ['What if we run these tests on SIL first?', 'Nếu mình chạy các test này trên SIL trước thì sao?'],
+    ["Let's take this offline.", 'Mình trao đổi riêng việc này sau nhé.'],
+    ["Let me share my screen.", 'Để tôi chia sẻ màn hình.'],
+    ['Could we go back to the previous slide?', 'Mình quay lại slide trước được không?'],
+    ['To sum up, we will focus on the regression tests this sprint.', 'Tóm lại, sprint này mình tập trung vào test hồi quy.'],
+  ],
+  customer: [
+    ['Thank you for your quick feedback.', 'Cảm ơn bạn đã phản hồi nhanh.'],
+    ['We will investigate the issue and get back to you by Friday.', 'Chúng tôi sẽ điều tra và phản hồi trước thứ Sáu.'],
+    ['Could you share the requirement document with us?', 'Bạn có thể chia sẻ tài liệu requirement cho chúng tôi không?'],
+    ['We need a clear definition of the acceptance criteria.', 'Chúng tôi cần định nghĩa rõ tiêu chí nghiệm thu.'],
+    ["Let me check with my team and confirm.", 'Để tôi kiểm tra với nhóm và xác nhận lại.'],
+    ['Is it possible to extend the deadline by one week?', 'Có thể lùi hạn thêm một tuần không?'],
+    ['We have completed the test campaign for this release.', 'Chúng tôi đã hoàn thành đợt test cho bản phát hành này.'],
+  ],
+  help: [
+    ['Do you have a minute? I have a quick question.', 'Bạn rảnh một phút không? Tôi có câu hỏi nhanh.'],
+    ['Could you take a look at this log?', 'Bạn xem giúp tôi log này được không?'],
+    ["I've tried restarting the bench, but it still doesn't work.", 'Tôi đã thử khởi động lại bàn test nhưng vẫn không được.'],
+    ['Who should I contact about the DBC file?', 'Tôi nên liên hệ ai về file DBC?'],
+    ['Could you show me how you did that?', 'Bạn chỉ tôi cách bạn làm được không?'],
+    ['Thanks a lot, that really helped.', 'Cảm ơn nhiều, giúp tôi nhiều lắm.'],
+  ],
+  email: [
+    ['I hope you are doing well.', 'Hy vọng bạn vẫn khoẻ.'],
+    ['I am writing to update you on the test status.', 'Tôi viết email để cập nhật tình trạng kiểm thử.'],
+    ['Please find the test report attached.', 'Báo cáo kiểm thử được đính kèm.'],
+    ['Could you please confirm by tomorrow?', 'Bạn vui lòng xác nhận trước ngày mai nhé.'],
+    ['Sorry for the late reply.', 'Xin lỗi vì trả lời muộn.'],
+    ['Please let me know if you have any questions.', 'Có câu hỏi gì cứ báo tôi nhé.'],
+    ['Just a gentle reminder about the review tomorrow.', 'Nhắc nhẹ về buổi review ngày mai.'],
+    ['Best regards,', 'Trân trọng,'],
+  ],
+};
+
+export const seedPhrases = Object.entries(raw).flatMap(([topic, list]) =>
+  list.map(([front, meaning]) => ({ type: 'phrase', front, meaning, ipa: '', example: '', topic, ref: '' }))
+);
